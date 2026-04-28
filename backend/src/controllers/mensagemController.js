@@ -12,7 +12,8 @@ export async function enviar(req, res) {
 
     const mensagem = await mensagemService.enviarMensagem({
       conteudo,
-      idconversa
+      idconversa,
+      documentos_prioritarios
     });
 
     res.status(201).json({

@@ -100,7 +100,8 @@ async function carregarChat(idconversa: number) {
       // Envia a mensagem
       const res = await enviarMensagem({
         conteudo: mensagemInput,
-        idconversa: idConversa
+        idconversa: idConversa,
+        documentos_prioritarios: documentosSelecionados.map (d => d.iddocumento)
       });
 
       setMensagemInput("");

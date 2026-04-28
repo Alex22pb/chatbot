@@ -1,6 +1,7 @@
 export interface MensagemData {
   conteudo: string;
   idconversa: number;
+  documentos_prioritarios?: number[];
 }
 
 export interface MensagemResponse {

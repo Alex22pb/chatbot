@@ -1,3 +1,4 @@
+from buscar import BuscadorTFIDF
 from flask import Flask, request, jsonify
 from openai import OpenAI
 import os
@@ -7,14 +8,18 @@ with open("promptIA.txt", "r", encoding="utf-8") as f:
 
 app = Flask(__name__)
 
+buscador = BuscadorTFIDF()
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-@app.route("/processar_mensagem", methods=["POST"])
+"""@app.route("/processar_mensagem", methods=["POST"])
 def processar_mensagem():
     data = request.json
 
     idmensagem_processada = data.get("idmensagemProcessada")
     conteudo = data.get("conteudo")
+
+    resultados = buscador.buscar(conteudo)
 
     if not idmensagem_processada or not conteudo:
         return jsonify({
@@ -42,12 +47,21 @@ def processar_mensagem():
             "conteudo": resposta_texto,
             "intencao": "resposta_ia",
             "idmensagemProcessada": idmensagem_processada
-        })
+        })"""
 
-    except Exception as e:
-        return jsonify({
-            "erro": str(e)
-        }), 500
+@app.route("/processar_mensagem", methods=["POST"])
+def processar_mensagem():
+    data = request.json
+
+    conteudo = data.get("conteudo")
+    documentos_prioritarios = data.get("documentos_prioritarios", [])
+
+    resultados = buscador.buscar(conteudo, documentos_prioritarios)
+
+    return jsonify({
+        "query": conteudo,
+        "resultados": resultados
+    })
 
 
 if __name__ == "__main__":

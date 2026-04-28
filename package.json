@@ -21,17 +21,18 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "concurrently \"docker compose up\" \"npm run dev-backend\" \"npm run dev-frontend\" \"npm run dev-flask\"",
-  "dev-backend": "cd backend && npx nodemon server.js",
-  "dev-frontend": "cd frontend && npm run dev",
-  "dev-flask": "cd flask_server && python -m flask --app server:app run --port=5000"
-},
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"docker compose up\" \"npm run dev-backend\" \"npm run dev-frontend\" \"npm run dev-flask\"",
+    "dev-backend": "cd backend && npx nodemon server.js",
+    "dev-frontend": "cd frontend && npm run dev",
+    "dev-flask": "cd flask_server && python -m flask --app server:app run --port=5000"
+  },
   "dependencies": {
     "axios": "^1.13.6",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "JSX": "^1.1.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-toastify": "^11.0.5",

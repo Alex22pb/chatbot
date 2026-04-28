@@ -3,7 +3,7 @@ import * as conversaService from "./conversaService.js";
 import * as mensagemProcessadaService from "./mensagemProcessadaService.js";
 
 export async function enviarMensagem(mensagem) {
-  const { conteudo, idconversa } = mensagem;
+  const { conteudo, idconversa, documentos_prioritarios } = mensagem;
 
   if (!conteudo || conteudo.trim() === "") {
     throw new Error("Conteúdo da mensagem é obrigatório");
